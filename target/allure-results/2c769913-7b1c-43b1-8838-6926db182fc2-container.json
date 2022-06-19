@@ -1,0 +1,1 @@
+{"uuid":"2c769913-7b1c-43b1-8838-6926db182fc2","name":"privacyPolicyAcceptingTest()","children":["dbb26424-78e4-424a-9bdc-09735cd2d3e9"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1655654095726,"stop":1655654100116}],"afters":[],"links":[],"start":1655654095574,"stop":1655654103515}
