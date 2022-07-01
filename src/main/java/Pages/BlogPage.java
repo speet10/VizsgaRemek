@@ -1,51 +1,64 @@
 package Pages;
 
-import Utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class BlogPage extends HomePage{
 
     public BlogPage(WebDriver driver){
         super(driver);
-
     }
-    private final By firstButton = By.xpath("//*[@id=\"content\"]/section/div/div/nav/ul/li[1]/a");
-    private final By secondButton = By.xpath("//*[@id=\"content\"]/section/div/div/nav/ul/li[2]/a");
+
+
     private final By nextButton = By.xpath("//*[@id=\"content\"]/section/div/div/nav/ul/li[3]/a");
+    private final By blogPosts = By.xpath("//*[@id=\"content\"]/section/div/div/div");
 
 
-    public void pagination(){
+    public int numberOfBlogPosts() {
+        int num = 0;
 
-        Utils util = new Utils(driver);
-        util.scrollDown();
-        driver.findElement(secondButton).click();
-        driver.findElement(firstButton).click();
-        util.scrollDown();
+        List<WebElement> postList = driver.findElements(blogPosts);
+        num = postList.size();
+
+        return num;
     }
-    public void paginationNextButton(){
-        Utils util = new Utils(driver);
-        util.scrollDown();
-        driver.findElement(nextButton).click();
-        driver.findElement(firstButton).click();
-        util.scrollDown();
+    public boolean existsNextButton() {
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, 3);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(nextButton));
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
-    public void paginationBack(){
-        driver.findElement(secondButton).click();
-        Utils util = new Utils(driver);
-        util.goBack();
+    public void nextButtonClick() {
+        if (existsNextButton()) {
+            driver.findElement(nextButton).click();
+        }
+    }
+    public int blogPostCalculator() {
+        int actual = 0;
+        while (true) {
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            actual += numberOfBlogPosts();
+            if (!existsNextButton()) {
+                break;
+            }
+            nextButtonClick();
+        }
+        return actual;
     }
 
-    public void paginationNextButtonBack(){
-        driver.findElement(nextButton).click();
-        Utils util = new Utils(driver);
-        util.goBack();
-    }
+
 }
 
 

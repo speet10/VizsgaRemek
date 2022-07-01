@@ -1,6 +1,6 @@
 import Pages.BlogPage;
-import Pages.ContactPage;
 import Pages.HomePage;
+import Pages.ProfilePage;
 import Pages.StartingPage;
 import Utils.Utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -18,9 +18,9 @@ public class BaseTest {
     WebDriver driver;
     protected StartingPage startingPage;
     protected HomePage homePage;
-    protected ContactPage contactPage;
     protected BlogPage blogPage;
     protected Utils utils;
+    protected ProfilePage profilePage;
 
 
     @BeforeEach
@@ -43,15 +43,14 @@ public class BaseTest {
 
         startingPage = new StartingPage(driver);
         homePage = new HomePage(driver);
-        contactPage = new ContactPage(driver);
         blogPage = new BlogPage(driver);
         utils = new Utils(driver);
-
+        profilePage = new ProfilePage(driver);
     }
 
-   /* @AfterEach
-    public void closeWindow(){
-        driver.quit();
+  @AfterEach
+    public void closure(){
+       driver.manage().deleteAllCookies();
+       driver.quit();
     }
-    */
 }

@@ -1,9 +1,12 @@
 package Pages;
+import Utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class StartingPage {
@@ -26,6 +29,7 @@ public class StartingPage {
     private final By loginUsernameInput = By.xpath("//*[@id=\"email\"]");
     private final By loginPasswordInput = By.xpath("//*[@id=\"password\"]");
     private final By loginButton = By.xpath("//*[@id=\"login\"]/form/div[4]/button");
+    private final By UserRegisteredAlert = By.xpath("//*[@id=\"register-alert\"]");
 
     String username = "Peti";
     String password = "Peti123";
@@ -33,6 +37,7 @@ public class StartingPage {
 
 
     public void privacyPolicyAccepting(){
+
         driver.findElement(privacyAcceptButton).click();
     }
 
@@ -49,6 +54,8 @@ public class StartingPage {
         driver.findElement(registerEmailInput).click();
         driver.findElement(registerEmailInput).sendKeys(email);
         driver.findElement(registerButton).click();
+
+
     }
 
     public void loginProcess() {
@@ -60,22 +67,78 @@ public class StartingPage {
         driver.findElement(loginButton).click();
     }
 
+    public String getRegisterAlert() {
 
-    FileReader fr = null;
-    BufferedReader br = null;
-
-    String readLine;
-    String filePath;
-    StringBuffer ab;
-
-    public void readTextFile(String filePath) throws Exception {
-
-
-        fr = new FileReader(filePath);
-        br = new BufferedReader(fr);
-        while ((readLine = br.readLine()) !=null) ;
+        return driver.findElement(UserRegisteredAlert).getText();
     }
 
+    public void registrationFromDataSource() {
+        Utils utils = new Utils(driver);
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new FileReader("src/test/RegData.txt"));
 
+            ArrayList<By> inputFieldList = new ArrayList<>();
+            inputFieldList.add(registerUsernameInput);
+            inputFieldList.add(registerPasswordInput);
+            inputFieldList.add(registerEmailInput);
+
+            ArrayList<String> lineList = new ArrayList<>();
+            String line = "";
+            while (line != null) {
+                line = bufferedReader.readLine();
+                lineList.add(line);
+            }
+            lineList.remove(lineList.size() - 1);
+
+            int i = 0;
+            while (i < lineList.size()) {
+                driver.findElement(registerPageButton).click();
+                for (By by : inputFieldList) {
+                    driver.findElement(by).sendKeys(lineList.get(i));
+                    i++;
+                }
+                driver.findElement(registerButton).click();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void loginFromDataSource() {
+        Utils utils = new Utils(driver);
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new FileReader("src/test/LoginData.txt"));
+
+            ArrayList<By> inputFieldList = new ArrayList<>();
+            inputFieldList.add(loginUsernameInput);
+            inputFieldList.add(loginPasswordInput);
+
+            ArrayList<String> lineList = new ArrayList<>();
+            String line = "";
+            while (line != null) {
+                line = bufferedReader.readLine();
+                lineList.add(line);
+            }
+            lineList.remove(lineList.size() - 1);
+
+            int i = 0;
+            while (i < lineList.size()) {
+                driver.findElement(loginPageButton).click();
+                for (By by : inputFieldList) {
+                    driver.findElement(by).sendKeys(lineList.get(i));
+                    i++;
+                }
+                driver.findElement(loginButton).click();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 

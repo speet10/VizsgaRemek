@@ -1,9 +1,10 @@
 package Utils;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import java.io.*;
+import java.util.Set;
 
 
 public class Utils {
@@ -16,22 +17,21 @@ public class Utils {
         this.driver = driver;
     }
 
-    public void goBack(){
-        driver.navigate().back();
-    }
+    public void refresh() {
 
-    public void refresh(){
         driver.navigate().refresh();
     }
 
     public void scrollDown() {
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("window.scrollBy(0,1100)");
-         }
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0,500)");
+    }
 
     public void sleep(int time) throws InterruptedException {
         Thread.sleep(time);
     }
 
+    public Set<Cookie> getCookies() {
+        return driver.manage().getCookies();
+    }
 }
-
