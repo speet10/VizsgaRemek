@@ -13,7 +13,7 @@ public class MultiPageListTest extends BaseTest{
     @DisplayName("TC10")
     @Description("Megszámoljuk hány blogbejegyzést tartalmaz az összes oldal.")
     @Severity(SeverityLevel.NORMAL)
-    public void paginationTest(){
+    public void paginationTest() throws InterruptedException {
 
         startingPage.privacyPolicyAccepting();
         startingPage.registerProcess();

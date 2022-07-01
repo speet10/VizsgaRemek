@@ -32,7 +32,7 @@ public class BlogPage extends HomePage{
     }
     public boolean existsNextButton() {
         try{
-            WebDriverWait wait = new WebDriverWait(driver, 6);
+            WebDriverWait wait = new WebDriverWait(driver, 8);
             wait.until(ExpectedConditions.visibilityOfElementLocated(nextButton));
             return true;
         }
@@ -48,7 +48,7 @@ public class BlogPage extends HomePage{
     public int blogPostCalculator() {
         int actual = 0;
         while (true) {
-            driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
             actual += numberOfBlogPosts();
             if (!existsNextButton()) {
                 break;

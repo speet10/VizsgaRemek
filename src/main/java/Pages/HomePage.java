@@ -29,8 +29,9 @@ public class HomePage extends StartingPage {
         driver.findElement(profileButton).click();
     }
 
-    public void navigateToBlog() {
+    public void navigateToBlog() throws InterruptedException {
         driver.findElement(blogButton).click();
+        Thread.sleep(1500);
         driver.findElement(seeAllPostButton).click();
     }
 
