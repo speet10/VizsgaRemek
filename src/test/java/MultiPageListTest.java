@@ -9,7 +9,7 @@ import org.junit.jupiter.api.RepeatedTest;
 public class MultiPageListTest extends BaseTest{
 
 
-    @RepeatedTest(2)
+    @RepeatedTest(1)
     @DisplayName("TC10")
     @Description("Megszámoljuk hány blogbejegyzést tartalmaz az összes oldal.")
     @Severity(SeverityLevel.NORMAL)
