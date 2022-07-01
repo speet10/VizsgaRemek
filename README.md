@@ -26,5 +26,5 @@
 >>### Linkek:
 >>>* [Portio weboldal](https://lennertamas.github.io/portio/)
 >>>* [Tesztmenedzser](https://docs.google.com/spreadsheets/d/1X_wSFeqYDPBG7ZU4LW-mwp7juzhCGRmTdaif4On_R80/edit#gid=0)
->>>* [Allure riport]()
+>>>* [Allure riport](https://speet10.github.io/VizsgaRemek)
 
