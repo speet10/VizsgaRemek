@@ -16,7 +16,6 @@ public class HomePage extends StartingPage {
         super(driver);
 
     }
-    //public final String txtPath = "src/main/java/NavBarList.txt";
     private final By blogButton = By.xpath("//*[@id=\"navbarCollapse\"]/ul[1]/li[7]/a");
     private final By seeAllPostButton = By.xpath("//*[@id=\"blog\"]/div[2]/div[1]/div[2]/div/a");
     private final By logOutButton = By.xpath("//*[@id=\"logout-link\"]/a");

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class SaveDataTest extends BaseTest{
 
-    @RepeatedTest(1)
+    @RepeatedTest(2)
     @DisplayName("TC13")
     @Description("Lementjük egy txt. fájlba a menüpontok listáját.")
     @Severity(SeverityLevel.CRITICAL)
