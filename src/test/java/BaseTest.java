@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     WebDriver driver;
+
     protected StartingPage startingPage;
     protected HomePage homePage;
     protected BlogPage blogPage;

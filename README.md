@@ -19,8 +19,8 @@
 
 >>### Tesztek futtatása:
 >>>* Valamilyen integrált fejlesztői környezettel (pl.: IntelliJ IDEA) futtathatjuk a teszteket.
->>>>>>* Az src/test/java mappában találhatók a futtatható java teszt fájlok.
->>>>>>>>>* A  tesztek mellett balra található kis zöld háromszögre kattintva tudjuk futtatni a teszteseteket.
+>>>* Az src/test/java mappában találhatók a futtatható java teszt fájlok.
+>>>* A  tesztek mellett balra található kis zöld háromszögre kattintva tudjuk futtatni a teszteseteket.
 
 
 >>### Linkek:
