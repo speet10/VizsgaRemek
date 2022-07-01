@@ -5,17 +5,17 @@
 
 
 >>>### Teszt követelmények:
->>>* - Adatkezelési nyilatkozat használata
->>>* - Regisztráció
->>>* - Bejelentkezés
->>>* - Kijelentkezés
->>>* - Több oldalas lista bejárása
->>>* - Adatok listázása
->>>* - Új adat bevitel
->>>* - Ismételt és sorozatos adatbevitel adatforrásból
->>>* - Adatok lementése felületről
->>>* - Meglévő adat módosítás
->>>* - Adat vagy adatok törlése
+>>>* Adatkezelési nyilatkozat használata
+>>>* Regisztráció
+>>>* Bejelentkezés
+>>>* Kijelentkezés
+>>>* Több oldalas lista bejárása
+>>>* Adatok listázása
+>>>* Új adat bevitel
+>>>* Ismételt és sorozatos adatbevitel adatforrásból
+>>>* Adatok lementése felületről
+>>>* Meglévő adat módosítás
+>>>* Adat vagy adatok törlése
 
 >>### Tesztek futtatása:
 >>>* Valamilyen integrált fejlesztői környezettel (pl.: IntelliJ IDEA) futtathatjuk a teszteket.
