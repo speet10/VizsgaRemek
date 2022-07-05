@@ -21,7 +21,7 @@ public class BlogPage extends HomePage{
     private final By nextButton = By.xpath("//*[@id=\"content\"]/section/div/div/nav/ul/li[3]/a");
     private final By blogPosts = By.xpath("//*[@id=\"content\"]/section/div/div/div");
 
-
+/** Metódus,listába teszi a posztokat és visszaadja a lista hosszát. **/
     public int numberOfBlogPosts() {
         int num = 0;
 
@@ -30,6 +30,8 @@ public class BlogPage extends HomePage{
 
         return num;
     }
+
+    /** Metódus,megnézi,hogy a léptető gomb látható-e **/
     public boolean existsNextButton() {
         try{
             WebDriverWait wait = new WebDriverWait(driver, 8);
@@ -39,12 +41,16 @@ public class BlogPage extends HomePage{
         catch (Exception e){
             return false;
         }
+
+        /** Metódus,kattint a léptető gombra **/
     }
     public void nextButtonClick() {
         if (existsNextButton()) {
             driver.findElement(nextButton).click();
         }
     }
+
+    /** Metódus, összeszámolja az oldalakon található posztokat, ameddig tud léptetni az oldalon **/
     public int blogPostCalculator() {
         int actual = 0;
         while (true) {
@@ -57,8 +63,6 @@ public class BlogPage extends HomePage{
         }
         return actual;
     }
-
-
 }
 
 

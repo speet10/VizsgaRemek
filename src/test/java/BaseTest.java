@@ -12,9 +12,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-
+/** Ebből származtatjuk a többi tesztosztályt. **/
 public class BaseTest {
 
+/** Az oldalakat már itt példányosítom,
+  ezáltal az itt megadott nevekkel tudok hivatkozni még külön példányosítás nélkül. **/
     WebDriver driver;
 
     protected StartingPage startingPage;
@@ -23,22 +25,22 @@ public class BaseTest {
     protected Utils utils;
     protected ProfilePage profilePage;
 
-
+/** A BeforeEach minden teszt előtt lefut **/
     @BeforeEach
     public void setUp(){
 
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--headless");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("start-maximized");
-        options.addArguments("−−incognito");
+        WebDriverManager.chromedriver().setup();                        /** WebDriver beállításában segít **/
+        ChromeOptions options = new ChromeOptions();                    /** A ChromeDriver beállításai **/
+        options.addArguments("--no-sandbox");                           /** Ne legyen elszigetelt környezet **/
+        options.addArguments("--disable-dev-shm-usage");                /** Kikapcsoljuk az ideiglenes fájltároló rendzsert **/
+        options.addArguments("--disable-notifications");                /** Kikapcsoljuk az értesítéseket **/
+        options.addArguments("--disable-extensions");                   /** Kikapcsoljuk a bővítményeket **/
+        options.addArguments("--headless");                             /** Megjelenés nélkül fusson le **/
+        options.addArguments("--window-size=1920,1080");                /** A képernyő méretét 1920,1080 felbontásra állítjuk **/
+        options.addArguments("start-maximized");                        /** Teljes képernyőn fusson a teszt **/
+        options.addArguments("−−incognito");                            /** Inkognító módban fusson **/
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);  /** Ez az időkorlát arra szolgál, hogy megadja, mennyi időt várjon az illesztőprogram egy elem keresése közben, ha az nincs azonnal jelen **/
         driver.manage().window().maximize();
         driver.get("https://lennertamas.github.io/portio/");
 
@@ -49,9 +51,11 @@ public class BaseTest {
         profilePage = new ProfilePage(driver);
     }
 
+    /** AZ AfterEach minden teszt után lefut **/
+
   @AfterEach
     public void closure(){
-       driver.manage().deleteAllCookies();
-       driver.quit();
+       driver.manage().deleteAllCookies();      /** Törli a sütiket **/
+       driver.quit();                           /** Kilép a driverből **/
     }
 }

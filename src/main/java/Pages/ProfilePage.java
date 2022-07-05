@@ -22,12 +22,14 @@ public class ProfilePage extends HomePage {
     String newBio = "Ez a profilom.";
     String newPhoneNumber = "+36303333333";
 
+/** Metódus, kiszedi az element által kiírt szöveget **/
     public String getProfileEditedAlert() {
 
         return driver.findElement(profileEditAlert).getText();
 
     }
 
+/** Metódus, feltölti a profil oldal inputmezőit és kattint a mentés gombon **/
     public void profileEditProcess(){
 
         driver.findElement(profileNameInput).click();
@@ -39,7 +41,7 @@ public class ProfilePage extends HomePage {
         driver.findElement(saveProfileButton).click();
 
     }
-
+/** Metódus, kattint a törlés gombokon **/
     public void deleteAccountProcess(){
 
         driver.findElement(deleteAccountButton).click();

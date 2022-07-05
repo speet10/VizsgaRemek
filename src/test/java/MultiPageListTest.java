@@ -24,5 +24,4 @@ public class MultiPageListTest extends BaseTest{
         utils.scrollDown();
         Assertions.assertEquals(expected, actual);
     }
-
 }

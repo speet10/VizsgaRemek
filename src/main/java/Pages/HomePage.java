@@ -24,22 +24,26 @@ public class HomePage extends StartingPage {
     public final By navBarLine = By.xpath("//*[@id=\"navbarCollapse\"]//*[@class=\"nav-item\"]");
     private final By profileButton = By.xpath("//*[@id=\"profile-btn\"]");
 
-
+/** Metódus, a profil oldalra navigál **/
     public void navigateToProfile(){
         driver.findElement(profileButton).click();
     }
 
+/** Metódus, a profil oldalra navigál **/
     public void navigateToBlog() throws InterruptedException {
         driver.findElement(blogButton).click();
         Thread.sleep(1500);
         driver.findElement(seeAllPostButton).click();
     }
 
-
+/** Metódus, rákattint a kijelentkezés gombra **/
     public void logOut() {
         driver.findElement(logOutButton).click();
     }
 
+
+/** Metódus, csinál egy listát ,ami a navigációs sáv elemeinek a neveit tartalmazza,
+ majd a tesztben megnézhetjük,hogy a keresett elemnek a nevét tartalmazza -e a lista **/
     public boolean createDataList(String word ) {
         boolean result = false;
         List<WebElement> list = driver.findElements(navBar);
@@ -54,6 +58,7 @@ public class HomePage extends StartingPage {
         return result;
     }
 
+ /** Metódus, a navigációs sáv elemeinek listáját átadjuk egy tömbnek **/
     public ArrayList navBarList(By elements){
     List<WebElement> elementList = driver.findElements(elements);
     ArrayList<String> stringArrayList = new ArrayList<>();
@@ -66,12 +71,15 @@ public class HomePage extends StartingPage {
 
     }
 
+    /** Metódus, létrehozunk egy NavBarList.txt fájlt és beleírunk tömb lista elemeket **/
+
     public void writeFile(ArrayList<String> data) throws IOException {
         FileWriter fw = new FileWriter("src/main/java/NavBarList.txt");
         fw.write(String.valueOf(data));
         fw.close();
     }
 
+ /** Metódus, a tömb elemeit eltávolítja a fájlból **/
     public void clearTextList() throws IOException {
         new FileWriter("src/main/java/NavBarList.txt",false).close();
     }

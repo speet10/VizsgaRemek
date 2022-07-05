@@ -35,16 +35,17 @@ public class StartingPage {
     String password = "Peti123";
     String email = "speti94@gmail.com";
 
-
+/** Metódus, kattint az Adatvédelmi nyilatkozat ablakon az elfogadás gombra. **/
     public void privacyPolicyAccepting(){
 
         driver.findElement(privacyAcceptButton).click();
     }
-
+/** Metódus, bezárja az Adatvédelmi nyilatkozat ablakot. **/
     public void privacyPolicyClosing() {
         driver.findElement(privacyCloseButton).click();
     }
 
+/** Metódus, kitölti az inputmezőket és kattint a regsztrálás gombon. **/
     public void registerProcess() {
         driver.findElement(registerPageButton).click();
         driver.findElement(registerUsernameInput).click();
@@ -58,6 +59,7 @@ public class StartingPage {
 
     }
 
+/** Metódus, kitölti az inputmezőket és kattint a bejelentkezés gombon. **/
     public void loginProcess() {
         driver.findElement(loginPageButton).click();
         driver.findElement(loginUsernameInput).click();
@@ -66,36 +68,37 @@ public class StartingPage {
         driver.findElement(loginPasswordInput).sendKeys(password);
         driver.findElement(loginButton).click();
     }
-
+/** Metódus, kiszedi az element által kiírt szöveget **/
     public String getRegisterAlert() {
 
         return driver.findElement(UserRegisteredAlert).getText();
     }
 
+/** Metódus, a fájlolvasó a külső fájlból(RegData.txt) kiolvassa soronként az adatokat és a megfelelő inputmezőbe illeszti bele őket, utána megnyomjuk a regisztráció gombot.  **/
     public void registrationFromDataSource() {
         Utils utils = new Utils(driver);
         BufferedReader bufferedReader;
         try {
             bufferedReader = new BufferedReader(new FileReader("src/test/RegData.txt"));
 
-            ArrayList<By> inputFieldList = new ArrayList<>();
-            inputFieldList.add(registerUsernameInput);
-            inputFieldList.add(registerPasswordInput);
-            inputFieldList.add(registerEmailInput);
+            ArrayList<By> inputFields = new ArrayList<>();
+            inputFields.add(registerUsernameInput);
+            inputFields.add(registerPasswordInput);
+            inputFields.add(registerEmailInput);
 
-            ArrayList<String> lineList = new ArrayList<>();
-            String line = "";
-            while (line != null) {
-                line = bufferedReader.readLine();
-                lineList.add(line);
+            ArrayList<String> dataList = new ArrayList<>();
+            String data = "";
+            while (data != null) {
+                data = bufferedReader.readLine();
+                dataList.add(data);
             }
-            lineList.remove(lineList.size() - 1);
+            dataList.remove(dataList.size() - 1);
 
             int i = 0;
-            while (i < lineList.size()) {
+            while (i < dataList.size()) {
                 driver.findElement(registerPageButton).click();
-                for (By by : inputFieldList) {
-                    driver.findElement(by).sendKeys(lineList.get(i));
+                for (By by : inputFields) {
+                    driver.findElement(by).sendKeys(dataList.get(i));
                     i++;
                 }
                 driver.findElement(registerButton).click();
@@ -106,6 +109,8 @@ public class StartingPage {
         }
 
     }
+
+    /** Metódus, a fájlolvasó a külső fájlból(LoginData.txt) kiolvassa soronként az adatokat és a megfelelő inputmezőbe illeszti bele őket, utána megnyomjuk a bejelentkezés gombot.  **/
 
     public void loginFromDataSource() {
         Utils utils = new Utils(driver);
